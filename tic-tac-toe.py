@@ -1,23 +1,29 @@
-def cout():
-  print("+" +"---+"*2 + "---+")
+def cout(box):
+  print("+---+---+---+")
   for i in box[:3]:
-    print("| "+i, end=" ")
-  print("|")
-  print("+" +"---+"*2 + "---+")
+    print("| " + i, end=" ")
+  print("|\n+---+---+---+")
   for i in box[3:6]:
-    print("| "+i, end=" ")
-  print("|")
-  print("+" +"---+"*2 + "---+")
+    print("| " + i, end=" ")
+  print("|\n+---+---+---+")
   for i in box[6:]:
-    print("| "+i, end=" ")
-  print("|")
-  print("+" +"---+"*2 + "---+")
+    print("| " + i, end=" ")
+  print("|\n+---+---+---+")
 
-def check():
-  for i in (0, 3, 6):
+def reading(box, count):
+  pos = int(input(("1st" if (count % 2 == 1) else "2nd") + 
+  " player, enter the area number:")) - 1
+  if (0 <= pos <= 8):
+    if (box[pos] == " "): 
+      box[pos] = "x" if (count % 2 == 1) else "o"
+      return True
+  return False
+
+def check(box):
+  for i in 0, 3, 6:
     if (box[i] == box[i+1] == box[i+2] != " "):
       return True
-  for i in (0, 1, 2):
+  for i in 0, 1, 2:
     if (box[i] == box[i+3] == box[i+6] != " "):
       return True
   if (box[0] == box[4] == box[8] != " "):
@@ -26,22 +32,23 @@ def check():
     return True
   return False
 
-print("This is the game tic-tac-toe:")
-count, box = 9, [" "]*9
-cout()
+def answer(count):
+  if (count > 0):
+    print(("1st" if (count % 2 == 1) else "2nd") + 
+    " player won")
+  else:
+    print("Friendship won")
 
-while(count):
-  pos = int(input(("First" if (count % 2 == 1) else "Second") + 
-  " player, enter the area number:"))
-  if (0 < pos < 10):
-    if (box[pos-1] == " "): 
-      box[pos-1] = "x" if (count % 2 == 1) else "o"
-      cout()
-      if (check()): break
+def main():
+  print("This is the game tic-tac-toe:")
+  count, box = 9, [" "]*9
+  cout(box)
+  while(count):
+    if (reading(box, count)):
+      cout(box)
+      if (check(box)):
+        break
       count -= 1
-    
-if (count > 0):
-  print(("First" if (count % 2 == 1) else "Second") + 
-  " player won")
-else:
-  print("Friendship won")
+  answer(count)
+
+main()
