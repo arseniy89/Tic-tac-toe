@@ -1,15 +1,15 @@
 def cout():
   print("+" +"---+"*2 + "---+")
-  for i in range(0, 3):
-    print("| "+box[i], end=" ")
+  for i in box[:3]:
+    print("| "+i, end=" ")
   print("|")
   print("+" +"---+"*2 + "---+")
-  for i in range(3, 6):
-    print("| "+box[i], end=" ")
+  for i in box[3:6]:
+    print("| "+i, end=" ")
   print("|")
   print("+" +"---+"*2 + "---+")
-  for i in range(6, 9):
-    print("| "+box[i], end=" ")
+  for i in box[6:]:
+    print("| "+i, end=" ")
   print("|")
   print("+" +"---+"*2 + "---+")
 
