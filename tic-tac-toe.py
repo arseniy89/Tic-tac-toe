@@ -33,11 +33,12 @@ cout()
 while(count):
   pos = int(input(("First" if (count % 2 == 1) else "Second") + 
   " player, enter the area number:"))
-  if (box[pos-1] == " "): 
-    box[pos-1] = "x" if (count % 2 == 1) else "o"
-    cout()
-    if (check()): break
-    count -= 1
+  if (0 < pos < 10):
+    if (box[pos-1] == " "): 
+      box[pos-1] = "x" if (count % 2 == 1) else "o"
+      cout()
+      if (check()): break
+      count -= 1
     
 if (count > 0):
   print(("First" if (count % 2 == 1) else "Second") + 
