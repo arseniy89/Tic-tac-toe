@@ -11,11 +11,11 @@ def cout(box):
   print("|\n+---+---+---+")
 
 def reading(box, count):
-  pos = int(input(("1st" if (count % 2 == 1) else "2nd") + 
+  pos = int(input(("1st" if (count % 2) else "2nd") + 
   " player, enter the area number:")) - 1
   if (0 <= pos <= 8):
     if (box[pos] == " "): 
-      box[pos] = "x" if (count % 2 == 1) else "o"
+      box[pos] = "x" if (count % 2) else "o"
       return True
   return False
 
@@ -34,7 +34,7 @@ def check(box):
 
 def answer(count):
   if (count > 0):
-    print(("1st" if (count % 2 == 1) else "2nd") + 
+    print(("1st" if (count % 2) else "2nd") + 
     " player won")
   else:
     print("Friendship won")
