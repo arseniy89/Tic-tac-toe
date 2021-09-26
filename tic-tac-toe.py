@@ -1,14 +1,14 @@
 def cout(box):
-  print("+---+---+---+")
+  print("●━━━●━━━●━━━●")
   for i in box[:3]:
-    print("| " + i, end=" ")
-  print("|\n+---+---+---+")
+    print("┃ " + i, end=" ")
+  print("┃\n●━━━●━━━●━━━●")
   for i in box[3:6]:
-    print("| " + i, end=" ")
-  print("|\n+---+---+---+")
+    print("┃ " + i, end=" ")
+  print("┃\n●━━━●━━━●━━━●")
   for i in box[6:]:
-    print("| " + i, end=" ")
-  print("|\n+---+---+---+")
+    print("┃ " + i, end=" ")
+  print("┃\n●━━━●━━━●━━━●")
 
 def reading(box, count):
   pos = int(input(("1st" if (count % 2) else "2nd") + 
@@ -39,8 +39,16 @@ def answer(count):
   else:
     print("Friendship won")
 
+def replay(func):
+  def wrapper():
+    func()
+    if (input("Do you want to play again? (y/n)") == "y"):
+      main()
+  return wrapper
+
+@replay
 def main():
-  print("This is the game tic-tac-toe:")
+  print("\nThis is the game tic-tac-toe:")
   count, box = 9, [" "]*9
   cout(box)
   while(count):
