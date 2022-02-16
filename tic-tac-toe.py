@@ -1,62 +1,34 @@
-def cout(box):
-  print("●━━━●━━━●━━━●")
-  for i in box[:3]:
-    print("┃ " + i, end=" ")
-  print("┃\n●━━━●━━━●━━━●")
-  for i in box[3:6]:
-    print("┃ " + i, end=" ")
-  print("┃\n●━━━●━━━●━━━●")
-  for i in box[6:]:
-    print("┃ " + i, end=" ")
-  print("┃\n●━━━●━━━●━━━●")
+from itertools import product
 
-def reading(box, count):
-  pos = int(input(("1st" if (count % 2) else "2nd") + 
-  " player, enter the area number:")) - 1
-  if (0 <= pos <= 8):
-    if (box[pos] == " "): 
-      box[pos] = "x" if (count % 2) else "o"
-      return True
-  return False
 
-def check(box):
-  for i in 0, 3, 6:
-    if (box[i] == box[i+1] == box[i+2] != " "):
-      return True
-  for i in 0, 1, 2:
-    if (box[i] == box[i+3] == box[i+6] != " "):
-      return True
-  if (box[0] == box[4] == box[8] != " "):
-    return True
-  if (box[2] == box[4] == box[6] != " "):
-    return True
-  return False
+def cout():
+    print(s:='\n●━━━●━━━●━━━●')
+    [print(f'┃ {b[i]} ┃ {b[i+1]} ┃ {b[i+2]} ┃{s}') for i in range(0, 7, 3)]
 
-def answer(count):
-  if (count > 0):
-    print(("1st" if (count % 2) else "2nd") + 
-    " player won")
-  else:
-    print("Friendship won")
 
-def replay(func):
-  def wrapper():
-    func()
-    if (input("Do you want to play again? (y/n)") == "y"):
-      main()
-  return wrapper
+def reading(s):
+    while 1:
+        try:
+            p = int(input(('2nd: ' if (s%2) else '1st: '))) - 1
+            if b[p] == ' ' and p >= 0:
+                b[p] = 'o' if (s%2) else 'x'
+                cout(); return
+        except: continue
 
-@replay
+
+def check():
+    for i, v in product(range(3), [c, z]):
+        if b[i::3]==v or b[i*3:i*3+3]==v or b[::4]==v or b[2:7:2]==v:
+            return '1st' if (v[0] == 'x') else '2nd'
+    return 'Friendship'
+
+
 def main():
-  print("\nThis is the game tic-tac-toe:")
-  count, box = 9, [" "]*9
-  cout(box)
-  while(count):
-    if (reading(box, count)):
-      cout(box)
-      if (check(box)):
-        break
-      count -= 1
-  answer(count)
+    print('\nTic-tac-toe game:')
+    while input('Play? (y) ') == 'y': 
+        global b, c, z; b, c, z = [' ']*9, ['x']*3, ['o']*3; cout()
+        [reading(s) for s in range(9) if (a:=check()) == 'Friendship']
+        print(f'{a} won')
+
 
 main()
