@@ -13,7 +13,7 @@ def reading(s):
             if b[p] == ' ' and p >= 0:
                 b[p] = 'o' if (s%2) else 'x'
                 cout(); return
-        except: continue
+        except: pass
 
 
 def check():
